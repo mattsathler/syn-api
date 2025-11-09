@@ -1,14 +1,18 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PatientsModule } from './modules/patients/patients.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { MongoModule } from './@shared/database/mongo/mongo.module';
+import { LoggerMiddleware } from './@shared/middlewares/LoggerMiddleware';
 
 @Module({
-  imports: [PatientsModule, AuthModule],
+  imports: [PatientsModule, AuthModule, MongoModule],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
-  
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
 }
