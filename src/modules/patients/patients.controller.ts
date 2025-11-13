@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post, Query } from '@nestjs/common';
 import { PatientsService } from './patients.service';
 import { GETPatientsDTO, POSTPatientsDTO } from './PatientsDTO';
 
@@ -9,6 +9,15 @@ export class PatientsController {
     @Get()
     async list(@Query() query: GETPatientsDTO) {
         return this.patientsService.findAll(query);
+    }
+
+    @Get(':id')
+    async getOne(@Param('id') id: string) {
+        const patient = await this.patientsService.findOne(id);
+        if (patient) {
+            return patient;
+        }
+        throw new NotFoundException('Paciente não encontrado');
     }
 
     @Post()

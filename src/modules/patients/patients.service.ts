@@ -49,6 +49,11 @@ export class PatientsService {
         };
     }
 
+    async findOne(id: string): Promise<Patient | null> {
+        const user = this.patientModel.findOne({ registration: id });
+        return user;
+    }
+
 
     async create(data: POSTPatientsDTO) {
         const newPatient = new this.patientModel({
