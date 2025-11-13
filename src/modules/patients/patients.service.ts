@@ -1,9 +1,8 @@
-// src/patients/patients.service.ts
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Patient } from 'src/schemas/Patient';
 import { GETPatientsDTO, POSTPatientsDTO } from './PatientsDTO';
+import { Patient } from '../../schemas/Patient';
 
 @Injectable()
 export class PatientsService {

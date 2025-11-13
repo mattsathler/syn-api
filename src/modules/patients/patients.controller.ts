@@ -1,4 +1,3 @@
-// src/patients/patients.controller.ts
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { PatientsService } from './patients.service';
 import { GETPatientsDTO, POSTPatientsDTO } from './PatientsDTO';
