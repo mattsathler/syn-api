@@ -50,7 +50,11 @@ export class PatientsService {
     }
 
     async findOne(id: string): Promise<Patient | null> {
-        const user = this.patientModel.findOne({ registration: id });
+        let user = await this.patientModel.findOne({ registration: id });
+        if (user) {
+            user.age = this.calculateAge(user.birthDate);
+        }
+        
         return user;
     }
 
