@@ -26,6 +26,6 @@ export class AuthController {
         const secret = process.env.JWT_SECRET;
         const token = jwt.sign({ sub: email }, secret, { expiresIn: '1h' });
 
-        return { token: token };
+        return { user: validUser, token: token };
     }
 }
