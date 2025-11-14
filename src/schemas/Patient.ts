@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Record } from './Record';
 
 // -------------------------------------
 // Subschemas
@@ -33,6 +34,7 @@ export class Patient extends Document {
     @Prop({ enum: ['Male', 'Female', 'Other'] }) gender?: string;
     @Prop({ required: true }) identification?: string;
     @Prop() age?: number;
+    @Prop() records?: Record[];
     @Prop() image?: string;
     @Prop() totalRecords?: number;
 

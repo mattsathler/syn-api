@@ -3,11 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { GETPatientsDTO, PatientDTO } from './PatientsDTO';
 import { Patient } from '../../schemas/Patient';
+import { Record } from 'src/schemas/Record';
 
 @Injectable()
 export class PatientsService {
     constructor(
         @InjectModel(Patient.name) private patientModel: Model<Patient>,
+        @InjectModel(Record.name) private recordModel: Model<Record>
+
     ) { }
 
     async findAll(query: GETPatientsDTO): Promise<any> {
@@ -53,6 +56,10 @@ export class PatientsService {
         let user = await this.patientModel.findOne({ registration: id });
         if (user) {
             user.age = this.calculateAge(user.birthDate);
+            let records = await this.recordModel
+                .find({ patientId: user?.registration })
+                .sort({ _id: -1 });
+            user.records = records ?? [];
         }
 
         return user;

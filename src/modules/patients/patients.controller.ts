@@ -1,10 +1,12 @@
 import { Body, Controller, Get, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common';
 import { PatientsService } from './patients.service';
 import { GETPatientsDTO, PatientDTO } from './PatientsDTO';
+import { RecordsService } from './records/records.service';
+import { RecordsDTO } from './records/RecordsDTO';
 
 @Controller('patients')
 export class PatientsController {
-    constructor(private readonly patientsService: PatientsService) { }
+    constructor(private readonly patientsService: PatientsService, private readonly recordsService: RecordsService) { }
 
     @Get()
     async list(@Query() query: GETPatientsDTO) {
@@ -21,12 +23,20 @@ export class PatientsController {
     }
 
     @Post()
-    async create(@Body() body: PatientDTO) {
+    async createPatient(@Body() body: PatientDTO) {
         return this.patientsService.create(body);
     }
 
     @Patch(':id')
     async patch(@Param('id') id: string, @Body() body: PatientDTO) {
         return this.patientsService.patch(id, body);
+    }
+
+    @Post(':id/records')
+    async createRecord(
+        @Param('id') id: string,
+        @Body() body: RecordsDTO
+    ) {
+        return this.recordsService.create(id, body);
     }
 }
