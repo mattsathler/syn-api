@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Employee } from 'src/modules/types/Employee';
+import { Employee } from '../modules/types/Employee';
 
 // -----------------------------------------------------
 // Subschemas opcionais
