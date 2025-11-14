@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { GETPatientsDTO, POSTPatientsDTO } from './PatientsDTO';
+import { GETPatientsDTO, PatientDTO } from './PatientsDTO';
 import { Patient } from '../../schemas/Patient';
 
 @Injectable()
@@ -33,7 +33,7 @@ export class PatientsService {
                 .find(filter)
                 .skip(skip)
                 .limit(limit)
-                .sort({ fullName: 1 }),
+                .sort({ registration: 1 }),
             this.patientModel.countDocuments(filter),
         ]);
 
@@ -54,17 +54,23 @@ export class PatientsService {
         if (user) {
             user.age = this.calculateAge(user.birthDate);
         }
-        
+
         return user;
     }
 
 
-    async create(data: POSTPatientsDTO) {
+    async create(data: PatientDTO) {
+        const count: number = await this.patientModel.countDocuments();
         const newPatient = new this.patientModel({
             ...data,
+            registration: String(count + 1),
         });
 
         return await newPatient.save();
+    }
+
+    async patch(id: string, data: PatientDTO) {
+        return await this.patientModel.updateOne({ registration: id }, data);
     }
 
     private calculateAge(birthDate: string): number {

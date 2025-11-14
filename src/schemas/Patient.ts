@@ -7,13 +7,13 @@ import { Document } from 'mongoose';
 
 @Schema({ _id: false })
 export class Address {
-    @Prop() street?: string;
-    @Prop() number?: string;
-    @Prop() complement?: string;
-    @Prop() neighborhood?: string;
-    @Prop() city?: string;
-    @Prop() state?: string;
-    @Prop() postalCode?: string;
+    @Prop() postalCode: string;
+    @Prop() state: string;
+    @Prop() city: string;
+    @Prop() neighborhood: string;
+    @Prop() street: string;
+    @Prop() number: string;
+    @Prop() complement: string;
 }
 
 export const AddressSchema = SchemaFactory.createForClass(Address);
@@ -26,25 +26,24 @@ export const AddressSchema = SchemaFactory.createForClass(Address);
 @Schema({ timestamps: true })
 export class Patient extends Document {
     // Personal Information
-    @Prop({ required: true }) registration: string;
+    @Prop() registration: string;
     @Prop({ required: true }) fullName: string;
     @Prop() socialName?: string;
-    @Prop() birthDate: string;
+    @Prop({ required: true }) birthDate: string;
     @Prop({ enum: ['Male', 'Female', 'Other'] }) gender?: string;
-    @Prop() identification?: string;
-    @Prop() rg?: string;
-    @Prop({ required: true }) age: number;
+    @Prop({ required: true }) identification?: string;
+    @Prop() age?: number;
     @Prop() image?: string;
     @Prop() totalRecords?: number;
 
     // Address
-    @Prop({ type: AddressSchema, required: true })
-    address: Address;
+    @Prop({ type: AddressSchema })
+    address?: Address;
 
     // Contact
-    @Prop() phone?: string;
+    @Prop({ required: true }) mainPhone: string;
     @Prop() secondaryPhone?: string;
-    @Prop() cellphone?: string;
+    @Prop({ required: true }) mainCellphone: string;
     @Prop() secondaryCellphone?: string;
     @Prop() email?: string;
 
@@ -65,7 +64,7 @@ export class Patient extends Document {
     @Prop() educationLevel?: string;
     @Prop() fatherName?: string;
     @Prop() motherName?: string;
-    @Prop() children?: string;
+    @Prop() children?: number;
     @Prop() companion?: string;
     @Prop() spouse?: string;
     @Prop() notes?: string;

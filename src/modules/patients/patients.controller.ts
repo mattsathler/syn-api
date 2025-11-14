@@ -1,6 +1,6 @@
-import { Body, Controller, Get, NotFoundException, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common';
 import { PatientsService } from './patients.service';
-import { GETPatientsDTO, POSTPatientsDTO } from './PatientsDTO';
+import { GETPatientsDTO, PatientDTO } from './PatientsDTO';
 
 @Controller('patients')
 export class PatientsController {
@@ -21,7 +21,12 @@ export class PatientsController {
     }
 
     @Post()
-    async create(@Body() body: POSTPatientsDTO) {
+    async create(@Body() body: PatientDTO) {
         return this.patientsService.create(body);
+    }
+
+    @Patch(':id')
+    async patch(@Param('id') id: string, @Body() body: PatientDTO) {
+        return this.patientsService.patch(id, body);
     }
 }

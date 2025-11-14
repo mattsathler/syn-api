@@ -33,57 +33,142 @@ class AddressDto {
     state: string;
 
     @IsString()
-    zipCode: string;
+    postalCode: string;
 
-    @IsOptional()
     @IsString()
     complement?: string;
+
+    @IsString()
+    neighborhood?: string;
 }
 
-export class POSTPatientsDTO {
+export class PatientDTO {
+    // Personal Information
+    @IsOptional()
     @IsString()
-    fullName: string;
+    registration?: string;
 
     @IsString()
-    registration: string;
+    fullName: string;
 
     @IsOptional()
     @IsString()
     socialName?: string;
 
-    @IsOptional()
     @IsDateString()
-    birthDate?: string;
+    birthDate: string;
 
     @IsOptional()
-    @IsEnum(['Male', 'Female'])
+    @IsEnum(['Male', 'Female', 'Other'])
     gender?: string;
 
-    @IsOptional()
     @IsString()
-    identification?: string;
+    identification: string;
 
     @IsOptional()
     @IsString()
-    registrationNumber?: string;
+    image?: string;
 
+    @IsOptional()
     @IsNumber()
-    age: number;
+    totalRecords?: number;
 
+    // Address
     @ValidateNested()
     @Type(() => AddressDto)
-    address: AddressDto;
+    address?: AddressDto;
+
+    // Contact
+    @IsString()
+    mainPhone: string;
 
     @IsOptional()
     @IsString()
-    mainPhone?: string;
+    secondaryPhone?: string;
+
+    @IsString()
+    mainCellphone: string;
+
+    @IsOptional()
+    @IsString()
+    secondaryCellphone?: string;
 
     @IsOptional()
     @IsString()
     email?: string;
 
+    // Insurance
+    @IsOptional()
+    @IsString()
+    insuranceType?: string;
+
+    @IsOptional()
+    @IsString()
+    insuranceCode?: string;
+
+    @IsOptional()
+    @IsString()
+    cnsNumber?: string;
+
+    @IsOptional()
+    @IsString()
+    medicalRecordNumber?: string;
+
     @IsOptional()
     @IsArray()
     @IsString({ each: true })
     tags?: string[];
+
+    @IsOptional()
+    @IsString()
+    registrationNumber?: string;
+
+    // Additional Information
+    @IsOptional()
+    @IsString()
+    company?: string;
+
+    @IsOptional()
+    @IsString()
+    reference?: string;
+
+    @IsOptional()
+    @IsString()
+    referredBy?: string;
+
+    @IsOptional()
+    @IsString()
+    maritalStatus?: string;
+
+    @IsOptional()
+    @IsString()
+    profession?: string;
+
+    @IsOptional()
+    @IsString()
+    educationLevel?: string;
+
+    @IsOptional()
+    @IsString()
+    fatherName?: string;
+
+    @IsOptional()
+    @IsString()
+    motherName?: string;
+
+    @IsOptional()
+    @IsNumber()
+    children?: number;
+
+    @IsOptional()
+    @IsString()
+    companion?: string;
+
+    @IsOptional()
+    @IsString()
+    spouse?: string;
+
+    @IsOptional()
+    @IsString()
+    notes?: string;
 }
