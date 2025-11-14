@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { GETPatientsDTO, PatientDTO } from './PatientsDTO';
 import { Patient } from '../../schemas/Patient';
-import { Record } from 'src/schemas/Record';
+import { Record } from '../../schemas/Record';
 
 @Injectable()
 export class PatientsService {
