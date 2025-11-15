@@ -2,22 +2,22 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { User } from '../../schemas/User';
+import { Employee } from '../../schemas/Employee';
 
 @Injectable()
 export class AuthService {
     constructor(
-        @InjectModel(User.name) private users: Model<User>,
+        @InjectModel(Employee.name) private employees: Model<Employee>,
     ) { }
 
-    public async validateUser(email: string, password: string): Promise<User | null> {
-        const user = await this.users.findOne({ email });
-        if (!user) return null;
+    public async validateEmployee(email: string, password: string): Promise<Employee | null> {
+        const employee = await this.employees.findOne({ email });
+        if (!employee) return null;
 
-        const isValid = await bcrypt.compare(password, user.password);
+        const isValid = await bcrypt.compare(password, employee.password);
         if (!isValid) return null;
 
-        const { password: _, ...result } = user.toObject();
-        return result as unknown as User;
+        const { password: _, ...result } = employee.toObject();
+        return result as unknown as Employee;
     }
 }

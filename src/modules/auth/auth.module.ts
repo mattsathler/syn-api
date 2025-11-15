@@ -6,6 +6,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   controllers: [AuthController],
   providers: [AuthService],
-  imports: [MongooseModule.forFeature([{ name: 'User', schema: require('../../schemas/User').UserSchema }])],
+  imports: [MongooseModule.forFeature([{ name: 'Employee', schema: require('../../schemas/Employee').EmployeeSchema }])],
 })
 export class AuthModule { }

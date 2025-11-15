@@ -53,16 +53,16 @@ export class PatientsService {
     }
 
     async findOne(id: string): Promise<Patient | null> {
-        let user = await this.patientModel.findOne({ registration: id });
-        if (user) {
-            user.age = this.calculateAge(user.birthDate);
+        let patient = await this.patientModel.findOne({ registration: id });
+        if (patient) {
+            patient.age = this.calculateAge(patient.birthDate);
             let records = await this.recordModel
-                .find({ patientId: user?.registration })
+                .find({ patientId: patient?.registration })
                 .sort({ _id: -1 });
-            user.records = records ?? [];
+            patient.records = records ?? [];
         }
 
-        return user;
+        return patient;
     }
 
 

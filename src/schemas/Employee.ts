@@ -4,7 +4,7 @@ import { Clinic } from "./Clinic";
 import * as bcrypt from 'bcrypt';
 
 @Schema({ timestamps: true })
-export class User extends Document {
+export class Employee extends Document {
     @Prop({ required: true })
     name: string;
 
@@ -32,9 +32,9 @@ export class User extends Document {
 
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const EmployeeSchema = SchemaFactory.createForClass(Employee);
 
-UserSchema.pre('save', async function (next) {
+EmployeeSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);

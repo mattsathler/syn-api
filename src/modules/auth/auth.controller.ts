@@ -17,15 +17,15 @@ export class AuthController {
             throw new BadRequestException('Email e senha são obrigatórios');
         }
 
-        const validUser = await this.service.validateUser(email, password);
+        const validEmployee = await this.service.validateEmployee(email, password);
 
-        if (!validUser) {
+        if (!validEmployee) {
             throw new UnauthorizedException('Email ou senha inválidos');
         }
 
         const secret = process.env.JWT_SECRET;
-        const token = jwt.sign({ sub: email }, secret, { expiresIn: '1h' });
+        const token = jwt.sign({ employee: validEmployee }, secret, { expiresIn: '1h' });
 
-        return { user: validUser, token: token };
+        return { employee: validEmployee, token: token };
     }
 }
