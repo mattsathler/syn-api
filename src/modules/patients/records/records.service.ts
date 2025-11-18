@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Record } from '../../../schemas/Record';
 import { RecordsDTO } from './RecordsDTO';
-import { Employee } from 'src/modules/types/Employee';
+import { Employee } from '../../../modules/types/Employee';
 
 @Injectable()
 export class RecordsService {

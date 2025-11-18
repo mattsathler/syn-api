@@ -1,9 +1,8 @@
 import { Body, Controller, Get, NotFoundException, Param, Patch, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/@shared/guards/JWTAuthGuard';
+import { JwtAuthGuard } from '../../@shared/guards/JWTAuthGuard';
 import { ClinicsService } from './clinics.service';
 import { Employee } from '../types/Employee';
-import { _Employee } from 'src/@shared/decorators/_Employee';
-import { Clinic } from 'src/schemas/Clinic';
+import { _Employee } from '../../@shared/decorators/_Employee';
 import { ClinicsDTO } from './clinicsDTO';
 
 @Controller('clinics')

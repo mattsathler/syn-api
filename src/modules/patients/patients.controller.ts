@@ -3,9 +3,9 @@ import { PatientsService } from './patients.service';
 import { GETPatientsDTO, PatientDTO } from './PatientsDTO';
 import { RecordsService } from './records/records.service';
 import { RecordsDTO } from './records/RecordsDTO';
-import { _Employee } from 'src/@shared/decorators/_Employee';
+import { _Employee } from '../../@shared/decorators/_Employee';
 import { Employee } from '../types/Employee';
-import { JwtAuthGuard } from 'src/@shared/guards/JWTAuthGuard';
+import { JwtAuthGuard } from '../../@shared/guards/JWTAuthGuard';
 
 @Controller('patients')
 export class PatientsController {
