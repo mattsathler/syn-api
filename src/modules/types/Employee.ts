@@ -10,7 +10,7 @@ export class Employee {
   name: string;
 
   @IsObject()
-  clinic: Clinic | Types.ObjectId;
+  clinic: string;
 
   @IsOptional()
   @IsString()
