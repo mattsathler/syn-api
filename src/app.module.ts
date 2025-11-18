@@ -5,9 +5,10 @@ import { PatientsModule } from './modules/patients/patients.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { MongoModule } from './@shared/database/mongo/mongo.module';
 import { LoggerMiddleware } from './@shared/middlewares/LoggerMiddleware';
+import { ClinicsModule } from './modules/clinics/clinics.module';
 
 @Module({
-  imports: [PatientsModule, AuthModule, MongoModule],
+  imports: [PatientsModule, AuthModule, ClinicsModule, MongoModule],
   controllers: [AppController],
   providers: [AppService],
 })

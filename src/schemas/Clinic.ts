@@ -6,23 +6,22 @@ export class Clinic extends Document {
     @Prop({ required: true })
     name: string;
 
+    @Prop({ required: true })
     @Prop()
     cnpj?: string;
-
-    @Prop({ required: true, unique: true })
-    domain: string; // Exemplo: "clinica-aurora.app.com"
 
     @Prop()
     logo?: string;
 
+    @Prop({ required: true })
     @Prop()
     address?: string;
 
     @Prop()
     phone?: string;
 
-    @Prop({ default: true })
-    isActive: boolean;
+    @Prop()
+    email?: string;
 }
 
 export const ClinicSchema = SchemaFactory.createForClass(Clinic);

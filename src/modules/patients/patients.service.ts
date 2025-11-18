@@ -10,7 +10,6 @@ export class PatientsService {
     constructor(
         @InjectModel(Patient.name) private patientModel: Model<Patient>,
         @InjectModel(Record.name) private recordModel: Model<Record>
-
     ) { }
 
     async findAll(query: GETPatientsDTO): Promise<any> {
@@ -51,7 +50,7 @@ export class PatientsService {
             data: patients,
         };
     }
-
+ 
     async findOne(id: string): Promise<Patient | null> {
         let patient = await this.patientModel.findOne({ registration: id });
         if (patient) {

@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
-import { Clinic } from "./Clinic";
 import * as bcrypt from 'bcrypt';
+import { Clinic } from "./Clinic";
 
 @Schema({ timestamps: true })
 export class Employee extends Document {
@@ -21,7 +21,7 @@ export class Employee extends Document {
     })
     role: 'admin' | 'doctor' | 'receptionist' | 'assistant';
 
-    @Prop({ type: Types.ObjectId, ref: 'Clinic', required: true })
+    @Prop({ type: Types.ObjectId, ref: 'Clinics', required: true })
     clinic: Clinic | Types.ObjectId;
 
     @Prop({ default: true })

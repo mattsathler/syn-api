@@ -1,4 +1,6 @@
-import { IsString, IsBoolean, IsOptional, IsDateString } from 'class-validator';
+import { IsString, IsBoolean, IsOptional, IsDateString, IsObject } from 'class-validator';
+import { Types } from 'mongoose';
+import { Clinic } from 'src/schemas/Clinic';
 
 export class Employee {
   @IsString()
@@ -6,6 +8,9 @@ export class Employee {
 
   @IsString()
   name: string;
+
+  @IsObject()
+  clinic: Clinic | Types.ObjectId;
 
   @IsOptional()
   @IsString()
